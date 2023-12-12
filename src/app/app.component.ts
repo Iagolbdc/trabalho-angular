@@ -37,6 +37,7 @@ export class AppComponent {
   verificarHorarios() {
     this.apiService.verificarHorarios().subscribe(response => {
       console.log(response);
+      this.router.navigate(["/"]);
     }, error => {
       console.log(error);
     })

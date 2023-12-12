@@ -52,6 +52,27 @@ export class AlunoDetailComponent {
     );
   }
 
+  horaEntrada() {
+    this.apiService.horarioEntrada(this.aluno!.id).subscribe(
+      (response) => {
+        console.log(response)
+        window.location.reload();
+      },
+      (error) => {
+        console.log(error)
+      });
+  }
+
+  horaSaida() {
+    this.apiService.horarioSaida(this.aluno!.id).subscribe(
+      (response) => {
+        console.log(response)
+        window.location.reload();
+      },
+      (error) => console.log(error));
+  }
+
+
   updateAluno() {
     if (this.alunoUpdate.nome) {
       this.formData.append("nome", this.alunoUpdate.nome);

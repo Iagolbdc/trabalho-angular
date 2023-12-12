@@ -32,6 +32,11 @@
       <input type="number" id="idade" name="idade" class="form-control" [(ngModel)]="aluno.idade">
     </div>
 
-    <button (click)="submitForm()" class="btn btn-primary">Adicionar Aluno</button>
+    <button (click)="submitForm()" appHighlight [highlightColor]="'yellow'" class="btn btn-primary">Adicionar
+      Aluno</button>
   </form>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+  {{ errorMessage }}
 </div>

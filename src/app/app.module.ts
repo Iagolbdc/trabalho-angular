@@ -13,6 +13,8 @@ import { AddAlunoComponent } from './components/add-aluno/add-aluno.component';
 import { TelefonePipe } from './pipes/telefone.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DoisNomesPipe } from './pipes/dois-nomes.pipe';
+import { DateFormatPipePipe } from './pipes/date-format-pipe.pipe';
+import { HighlightDirective } from './diretivas/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { DoisNomesPipe } from './pipes/dois-nomes.pipe';
     AlunoDetailComponent,
     AddAlunoComponent,
     TelefonePipe,
-    DoisNomesPipe
+    DoisNomesPipe,
+    DateFormatPipePipe,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

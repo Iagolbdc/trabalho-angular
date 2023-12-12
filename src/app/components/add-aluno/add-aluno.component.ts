@@ -21,15 +21,20 @@ export class AddAlunoComponent {
   previewUrl?: string | ArrayBuffer | null = null;
   fileError: string | null = null;
 
+  errorMessage: string = '';
+
   formData = new FormData()
 
 
   submitForm() {
+
+
     this.formData.append("nome", this.aluno.nome);
     this.formData.append("telefone_responsavel", this.aluno.telefone_responsavel);
     this.formData.append("matricula", this.aluno.matricula);
     this.formData.append("foto", this.aluno.foto);
     this.formData.append("idade", this.aluno.idade);
+    this.formData.append("url", this.apiService.url);
 
     console.log(this.aluno);
     this.apiService.addAluno(this.formData).subscribe(
@@ -38,7 +43,11 @@ export class AddAlunoComponent {
         console.log(response);
       },
       (error: any) => {
-        console.log(error);
+        if (!this.aluno.nome || !this.aluno.foto || !this.aluno.idade || !this.aluno.matricula || !this.aluno.telefone_responsavel) {
+          this.errorMessage = "Preencha todos os campos!";
+        } else {
+          this.errorMessage = "Matrícula já utilizada!";
+        }
       }
     );
   }

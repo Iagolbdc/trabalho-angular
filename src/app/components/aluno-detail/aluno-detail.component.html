@@ -1,13 +1,21 @@
-<div class="mx-auto p-3">
+<div *ngIf="aluno" class="mx-auto p-3">
   <div class="row" *ngIf="aluno">
     <div class="col-lg-4">
       <div class="card mb-1">
         <div class="card-body text-center">
-          <img [src]="aluno.foto" alt="avatar" class="" style="height: 150px; object-fit: cover; border-radius: 100px;">
+          <img [src]="aluno.foto" alt="avatar" class="" style="height: 150px; object-fit: fill;">
           <h5 class="my-3">{{aluno.nome | doisNomes}}</h5>
           <div class="d-flex row justify-content-center gap-2 mb-2">
             <button type="button" (click)="deleteAluno()" class="btn btn-danger">Deletar</button>
             <button type="button" (click)="startEditing()" class="btn btn-outline-primary">Atualizar</button>
+            <h3>Definir Horário</h3>
+            <div class="d-flex col justify-content-center gap-2">
+
+              <button type="button" appHighlight [highlightColor]="'blue'" (click)="horaEntrada()"
+                class="btn btn-success">Horário Entrada</button>
+              <button type="button" appHighlight [highlightColor]="'green'" (click)="horaSaida()"
+                class="btn btn-outline-primary">Horário Saída</button>
+            </div>
           </div>
         </div>
       </div>
@@ -22,6 +30,15 @@
             </div>
             <div class="col-sm-9">
               <p class="text-muted mb-0">{{aluno.nome}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Idade</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{aluno.idade}}</p>
             </div>
           </div>
           <hr>
@@ -45,10 +62,20 @@
           <hr>
           <div class="row">
             <div class="col-sm-3">
+              <p class="mb-0">Liberado</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{aluno.liberado ? "Sim" : "Não"}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
               <p class="mb-0">Horário de Entrada</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{{aluno.horario_entrada}}</p>
+              <p class="text-muted mb-0">{{aluno.horario_entrada ? (aluno.horario_entrada | dateFormat) : "Ainda não
+                verificado"}}</p>
             </div>
           </div>
           <hr>
@@ -57,7 +84,8 @@
               <p class="mb-0">Horário de Saída</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{{aluno.horario_saida}}</p>
+              <p class="text-muted mb-0">{{aluno.horario_saida ? (aluno.horario_saida | dateFormat) : "Ainda não
+                verificado"}}</p>
             </div>
           </div>
         </div>
@@ -110,4 +138,8 @@
 
 <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
   {{ errorMessage }}
+</div>
+
+<div *ngIf="!aluno" class="alert alert-danger mt-3" role="alert">
+  <h1>Nenhum Aluno Encontrado</h1>
 </div>
