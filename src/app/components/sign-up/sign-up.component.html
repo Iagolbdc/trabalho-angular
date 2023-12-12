@@ -1,0 +1,41 @@
+<div class="container-fluid h-custom position-absolute top-50 start-50 translate-middle">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-9 col-lg-6 col-xl-5">
+      <img src="/assets/audience.png" class=" img-fluid" alt="Sample image">
+    </div>
+    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+      <form>
+        <div class="form-outline mb-4">
+          <input type="email" id="username" name="username" [(ngModel)]="username" class="form-control form-control-lg"
+            placeholder="Nome do usuário" />
+          <label class="form-label" for="username">Usuário</label>
+        </div>
+
+        <div class="form-outline mb-4">
+          <input type="email" [(ngModel)]="email" name="email" id="email" class="form-control form-control-lg"
+            placeholder="E-mail" />
+          <label class="form-label" for="email">Endereço de E-mail</label>
+        </div>
+
+        <div class="form-outline mb-3">
+          <input type="password" id="password" name="password" [(ngModel)]="password"
+            class="form-control form-control-lg" placeholder="Senha" />
+          <label class="form-label" for="password">Senha</label>
+        </div>
+
+        <div class="text-center text-lg-start mt-4 pt-2">
+          <button type="button" (click)="signUp()" class="btn btn-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem;">Cadastrar</button>
+          <p class="small fw-bold mt-2 pt-1 mb-0">Já possuí conta? <a (click)="navigateToLogin()"
+              class="link-danger">Entrar</a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+  {{ errorMessage }}
+</div>

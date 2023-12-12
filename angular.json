@@ -68,7 +68,8 @@
               "browserTarget": "aluno_connect:build:production"
             },
             "development": {
-              "browserTarget": "aluno_connect:build:development"
+              "browserTarget": "aluno_connect:build:development",
+              "proxyConfig": "src/proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"
@@ -100,5 +101,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

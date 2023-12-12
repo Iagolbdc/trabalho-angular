@@ -1,0 +1,37 @@
+<div class="container mt-5 ">
+  <div class="d-flex flex-wrap gap-5 d-flex justify-content-center">
+    <div class="card" style="width: 12rem;"
+      *ngFor="let aluno of alunos | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+      <img [src]="aluno.qrcode" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ aluno.nome | doisNomes }}</h5>
+        <p class="card-text">Matrícula: {{ aluno.matricula }}</p>
+        <a (click)="navigateToDetails(aluno)" class="btn btn-primary">Detalhes</a>
+      </div>
+    </div>
+  </div>
+
+  <pagination-controls (pageChange)="pageChanged($event)" class="my-pagination"></pagination-controls>
+
+  <!--
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Matrícula</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aluno of alunos" (click)="navigateToDetails(aluno)">
+        <td>{{ aluno.nome }}</td>
+        <td>{{ aluno.matricula }}</td>
+        <td>
+          <button class="btn btn-info btn-sm">Detalhes</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  -->
+</div>

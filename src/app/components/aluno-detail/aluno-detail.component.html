@@ -1,0 +1,113 @@
+<div class="mx-auto p-3">
+  <div class="row" *ngIf="aluno">
+    <div class="col-lg-4">
+      <div class="card mb-1">
+        <div class="card-body text-center">
+          <img [src]="aluno.foto" alt="avatar" class="" style="height: 150px; object-fit: cover; border-radius: 100px;">
+          <h5 class="my-3">{{aluno.nome | doisNomes}}</h5>
+          <div class="d-flex row justify-content-center gap-2 mb-2">
+            <button type="button" (click)="deleteAluno()" class="btn btn-danger">Deletar</button>
+            <button type="button" (click)="startEditing()" class="btn btn-outline-primary">Atualizar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Nome Completo</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{aluno.nome}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Matrícula</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{aluno.matricula}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Telefone do Responsável</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{aluno.telefone_responsavel | Telefone}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Horário de Entrada</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{aluno.horario_entrada}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Horário de Saída</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{aluno.horario_saida}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div *ngIf="isEditing" class="card mb-1">
+    <h2 class="p-3">Atualizar Aluno</h2>
+
+    <form class="card-body ">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" [(ngModel)]="alunoUpdate.nome" id="bome" name="nome" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="telefone_responsavel" class="form-label">Telefone do Responsável</label>
+        <input type="text" id="telefone_responsavel" [(ngModel)]="alunoUpdate.telefone_responsavel"
+          name="telefone_responsavel" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="foto" class="form-label">Foto do Aluno</label>
+        <input type="file" id="foto" name="foto" class="form-control" (change)="handleFileInput($event)"
+          accept="image/*">
+        <div *ngIf="previewUrl" class="mt-2">
+          <img [src]="previewUrl" alt="Preview" class="img-fluid" style="max-width: 200px;">
+        </div>
+        <div *ngIf="fileError" class="text-danger mt-2">{{ fileError }}</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="idade" class="form-label">Idade</label>
+        <input type="number" id="idade" [(ngModel)]="alunoUpdate.idade" name="idade" class="form-control">
+      </div>
+
+
+      <div class="form-check form-switch" style="margin-bottom: 10px;">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="liberado"
+          [(ngModel)]="alunoUpdate.liberado">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Liberado</label>
+      </div>
+
+      <button type="submit" (click)="updateAluno()" class="btn btn-primary">Salvar Alterações</button>
+      <button type="button" (click)="cancelEditing()" class="btn btn-outline-secondary">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+  {{ errorMessage }}
+</div>
